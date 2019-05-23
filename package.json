@@ -1,0 +1,24 @@
+{
+  "name": "07-restserver",
+  "version": "1.0.0",
+  "description": "``` npm install ```",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ingenieroboyer/escuelaOnline.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ingenieroboyer/escuelaOnline/issues"
+  },
+  "homepage": "https://github.com/ingenieroboyer/escuelaOnline#readme"
+}
