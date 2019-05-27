@@ -10,5 +10,11 @@ app.get('/', (req, res) => {
         anio: new Date().getFullYear()
     });
 });
+app.get('/login', (req, res) => {
+    res.render('login', {
+        nombre: 'leonardo',
+        anio: new Date().getFullYear()
+    });
+});
 
 module.exports = app
