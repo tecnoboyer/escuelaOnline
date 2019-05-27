@@ -22,7 +22,7 @@ app.use(require('./routes/usuario'));
 app.use(require('./routes/directory'));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs');
-hbs.registerPartials(__dirname + '/views');
+hbs.registerPartials(__dirname + '/views/parciales');
 
 
 
