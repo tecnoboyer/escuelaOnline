@@ -28,7 +28,7 @@ hbs.registerPartials(__dirname + '/views/parciales');
 
 
 
-mongoose.connect(process.env.URLDB, (err, res) => {
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err, res) => {
     if (err) throw err;
     console.log("Base de datos ONLINE");
 });

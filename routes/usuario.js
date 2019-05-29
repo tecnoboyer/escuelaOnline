@@ -41,6 +41,8 @@ app.get('/usuario', function(req, res) {
         })
 });
 
+
+// // SE POSTELGA EL AÑADIR USUARIOS
 app.post('/usuario', function(req, res) {
     let body = req.body;
     let usuario = new Usuario({
@@ -65,21 +67,72 @@ app.post('/usuario', function(req, res) {
             usuario: usuarioDB
         });
     });
-
-    // if (body.nombre === undefined) {
-
-    //     res.status(400).json({
-    //         ok: false,
-    //         mensaje: 'El nombre es necesario'
-    //     });
-
-    // } else {
-    //     res.json({
-    //         persona: body
-    //     });
-    // }
-
 });
+
+
+
+
+
+app.post('/valida', function(req, res) {
+    let body = req.body;
+    // let usuario = new Usuario;
+    let nombre = body.nombre;
+    // email: body.email,
+    let password = body.password;
+
+    // Inicio de la prueba
+    Usuario.findOne({ nombre: nombre }, function(err, usuarioDB) {
+        if (err) {
+            return res.json({
+                Ok: false,
+                message: 'password correcto'
+
+            });
+        }
+
+        let bandera = bcrypt.compare(password, usuarioDB.password)
+            .then(function(samePassword) {
+                if (samePassword) {
+                    if (usuarioDB.role === 'USER_ROLE') {
+                        return res.render("usuarioUser")
+                    }
+                    if (usuarioDB.role === 'USER_ADMIN') {
+                        return res.render("usuarioAdmin")
+                    } else {
+                        res.json({
+                            Ok: false,
+                            message: 'No tenemos un rol adecuado para este usuario'
+
+                        });
+                    }
+
+                } else {
+                    res.json({
+                        Ok: false,
+                        message: 'no escribió el password correcto'
+
+                    });
+                }
+            });
+
+
+
+
+        // if (usuarioDB.role === 'USER_ROLE') {
+        // return res.render("usuarioUser")
+
+
+    });
+});
+
+
+
+
+
+
+
+
+
 
 app.put('/usuario/:id', function(req, res) {
 
@@ -96,10 +149,6 @@ app.put('/usuario/:id', function(req, res) {
                 err
             });
         }
-
-
-
-
         res.json({
             ok: true,
             usuario: usuarioDB
